@@ -97,8 +97,9 @@ function Checkout() {
     doc.text("Your order is being processed and will arrive soon.", 52, 105, {
       align: "center",
     });
+
     doc.setFont("helvetica", "bold");
-    doc.setFontSize("11");
+    doc.setFontSize(11);
     doc.setTextColor(textColor);
     doc.text("Your receipt was approved by shop keeper degifeT.", 35, 15, {
       align: "center",
