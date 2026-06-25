@@ -81,7 +81,7 @@ function Checkout() {
 
     doc.line(14, 68, rightAlignX - 10, 68);
 
-    doc.setFont("helvetica", "bold");
+-
     doc.setTextColor(brandColor);
     doc.text("Total Amount:", 14, 76);
     doc.setFont("helvetica", "bold");
@@ -97,9 +97,16 @@ function Checkout() {
     doc.text("Your order is being processed and will arrive soon.", 52, 105, {
       align: "center",
     });
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize("11");
+    doc.setTextColor(textColor);
+    doc.text("Your receipt was approved by shop keeper degifeT.", 35, 15, {
+      align: "center",
+    });
 
     doc.save(`Receipt_Order_${orderNumber || "Success"}.pdf`);
   };
+
   const [paymentSuceess, setPaymentSuccess] = useState(false);
   const [orderNumber, setOrderNumber] = useState("");
 
