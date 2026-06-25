@@ -2,6 +2,8 @@ import "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ShieldCheck, Truck, RotateCcw } from "lucide-react";
 import { useAuth } from "../context/AuthProvider";
+
+
 function Home() {
   const { currentUser } = useAuth();
 
@@ -68,22 +70,23 @@ function Home() {
 
       {/* Trust Badges Banner */}
       <section className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-        <div className="p-6 bg-white rounded-2xl border border-gray-100 flex flex-col items-center">
-          <Truck className="w-8 h-8 text-blue-600 mb-3" />
+        <div className="p-6 bg-slate-100 shadow-xl rounded-2xl border border-gray-100 flex flex-col items-center">
+          <Truck className="w-8 h-8  text-blue-600 font-extrabold mb-3" />
+
           <h3 className="font-bold text-gray-800 mb-1">Express Delivery</h3>
           <p className="text-sm text-gray-500">
             Fast, reliable local tracking on all customer orders.
           </p>
         </div>
-        <div className="p-6 bg-white rounded-2xl border border-gray-100 flex flex-col items-center">
-          <ShieldCheck className="w-8 h-8 text-blue-600 mb-3" />
+        <div className="p-6 bg-slate-100 shadow-xl rounded-2xl border border-gray-100 flex flex-col items-center">
+          <ShieldCheck className="w-8 h-8  text-blue-600 font-extrabold mb-3" />
           <h3 className="font-bold text-gray-800 mb-1">Secure Checkouts</h3>
           <p className="text-sm text-gray-500">
             Fully encrypted tokenized secure payment transactions.
           </p>
         </div>
-        <div className="p-6 bg-white rounded-2xl border border-gray-100 flex flex-col items-center">
-          <RotateCcw className="w-8 h-8 text-blue-600 mb-3" />
+        <div className="p-6 bg-slate-100 shadow-xl rounded-2xl border border-gray-100 flex flex-col items-center">
+          <RotateCcw className="w-8 h-8  text-blue-600 font-extrabold mb-3" />
           <h3 className="font-bold text-gray-800 mb-1">Easy Returns</h3>
           <p className="text-sm text-gray-500">
             Hassle-free return policy if you change your mind.
@@ -95,7 +98,7 @@ function Home() {
 
       <section className="p-6 bg-white rounded-2xl border border-gray-100 flex flex-col items-center">
         <div className="relative z-10">
-          <span className="inline-fit items-center gap-1.5 bg-indigo-500/20 border border-indigo-400 text-indigo-300 py-1 rounded-full text-xs semibold uppercase tracking-wider mb-4">
+          <span className="inline-fit items-center gap-1.5  border border-indigo-400 text-indigo-300 py-1 rounded-full text-xs semibold uppercase tracking-wider mb-4">
             Generally cosmo
           </span>
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight mb-4">
@@ -122,9 +125,9 @@ function Home() {
         <h3 className="text-5xl font-extrabold text-center">
           Some of our featured products
         </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 bg-white/50">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 bg-white/50">
           {featuredProducts.map((item) => (
-            <div className="md:p-6 p-" key={item.id}>
+            <div className="md:p-6" key={item.id}>
               <div className="bg-slate-200">
                 <div className="group bg-slate-200 p-6 rounded-3xl w-full">
                   <img

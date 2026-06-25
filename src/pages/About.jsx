@@ -1,4 +1,4 @@
-import React from "react";
+import "react";
 import { ShoppingBag, ShieldCheck, Truck, Clock } from "lucide-react";
 function About() {
   const values = [
@@ -60,11 +60,11 @@ function About() {
             </p>
           </div>
 
-          <div className="bg-linear-to-br from-blue-600 to-indigo-700 h-64 md:h-80 rounded-2xl shadow-xl flex items-center justify-center p-8 text-white relative overflow-hidden">
+          <div className="bg-white/50 h-full py-16 rounded-2xl shadow-xl flex items-center justify-center p-8 text-white relative overflow-hidden">
             <div className="absolute inset-0 bg-opacity-10 bg-[radial-gradient(#fff_1px, transparent)] [bg-size:16px_16px] pointer-events-none">
               <div className="flex items-center justify-center flex-col text-center z-10">
-                <p className="text-5xl font-black mb-2">100%</p>
-                <p className="text-blue-100 font-medium tracking-wide  text-sm">
+                <p className="text-5xl text-blue-600 font-black mb-2">100%</p>
+                <p className="text-slate-900 font-medium tracking-wide  text-sm">
                   Customer-Centric Focused
                 </p>
               </div>

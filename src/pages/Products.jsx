@@ -1,13 +1,16 @@
 import { useState } from "react";
-import { products } from "../data/products";
+ import { products } from "../data/products"; 
+import { useProducts } from "../context/ProductContext";
 import ProductCard from "../Components/ProductCard";
 import { useCart } from "../context/CartContext";
 
 export default function Products() {
+  const { products: adminProducts} = useProducts();
+  const allProducts = [...products, ...adminProducts];
   const { addToCart } = useCart();
   const [category, setCategory] = useState("All");
   const [search, setSearch] = useState("");
-  const filteredProducts = products.filter((p) => {
+  const filteredProducts = allProducts.filter((p) => {
     return (
       (category === "All" || p.category === category) &&
       p.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
@@ -28,7 +31,7 @@ export default function Products() {
       <div className="grid grid-cols-3 sm:flex mt-2 sm:mt-8 gap-4 items-center">
         <button
           onClick={() => setCategory("All")}
-          className={`rounded-3xl outline-none cursor-pointer ${category === "All" ? "bg-blue-600 text-white" : "border-1 border-blue-400 hover:bg-blue-500"} text-xs w-20 py-1 px-2 md:w-40 md:px-4 md:py-2  md:text-xl font-semibold sm:font-bold`}
+          className={`rounded-3xl outline-none cursor-pointer ${category === "All" ? "bg-blue-600 text-white" : "border-2 border-blue-400 hover:bg-blue-500"} text-xs w-20 py-1 px-2 md:w-40 md:px-4 md:py-2  md:text-xl font-semibold sm:font-bold`}
         >
           All
         </button>

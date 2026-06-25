@@ -1,11 +1,23 @@
 import { useCart } from "../context/CartContext";
 import { Link, NavLink } from "react-router-dom";
-import { ShoppingBag, ShoppingCart, User, X, Menu, LogOut } from "lucide-react";
+import {
+  ShoppingBag,
+  ShoppingCart,
+  X,
+  Menu,
+  LogOut,
+  UserCircle,
+} from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "../context/AuthProvider";
 
 export default function Navbar() {
   const { currentUser, logoutUser } = useAuth();
+  const [toggleAccount, setToggleAccount] = useState(false);
+
+  const handleAccountToggle = () => {
+    setToggleAccount((prev) => !prev);
+  };
 
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
@@ -98,19 +110,31 @@ export default function Navbar() {
             <div>
               <button
                 onClick={() => setShowLogoutModal(true)}
-                className=" md:p-3 px-1 py-1 rounded-xl text-white cursor-pointer hover:bg-blue-400 bg-blue-600 sm:px-7"
+                className="px-4 py-1 rounded-xl text-white cursor-pointer hover:bg-blue-700 bg-blue-600"
               >
-                <LogOut />
+                Logout
               </button>
             </div>
           ) : (
-            <Link
-              to="/register"
-              className="p-2 text-gray-600 hover:text-blue-600 transition"
-              aria-label="Account"
-            >
-              <User className="w-5 h-5" />
-            </Link>
+            <div className="relative" onClick={handleAccountToggle} >
+              <button className="px-4 py-1 rounded-xl text-white cursor-pointer hover:bg-blue-700 bg-blue-600 outline-none border-none">
+                <UserCircle className="w-8 h-6 text-white font-extrabold"/>
+              </button>
+              {toggleAccount && (
+                <div className="absolute z-10 top-15 bg-a rounded-xs px-8 md:px-10 shadow-2xl py-5 flex flex-col gap-3 bg-gray-300">
+                  <Link to="/register" aria-label="Account">
+                    <button className="block w-full px-4 md:px-8 py-1 rounded-xl text-white cursor-pointer hover:bg-amber-700 bg-blue-600">
+                      Register
+                    </button>
+                  </Link>
+                  <Link to="/login" aria-label="Account">
+                    <button className="block w-full px-4 md:px-8 py-1 rounded-xl text-white cursor-pointer hover:bg-amber-700 bg-blue-600">
+                      Login
+                    </button>
+                  </Link>
+                </div>
+              )}
+            </div>
           )}
           {showLogoutModal && (
             <div className="fixed inset-0 bg-black/50 transition-opacity duration-200 opacity-100 flex justify-center item-center">

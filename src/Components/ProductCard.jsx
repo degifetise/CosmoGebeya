@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ShoppingBasket, Star, ShoppingCart } from "lucide-react";
+import {  Star, ShoppingCart } from "lucide-react";
 
 export default function ProductCard({ product, addToCart }) {
   const navigate = useNavigate();
@@ -27,8 +27,9 @@ export default function ProductCard({ product, addToCart }) {
         </h3>
         <div className="mt-4">
           <p className="text-gray-900 font-extrabold text-lg mb-3">
-            ${product.price.toFixed(2)}
+            ${Number(product.price).toFixed(2)}
           </p>
+
           <button
             onClick={() => addToCart(product)}
             className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 rounded-xl transition flex items-center justify-center gap-2"

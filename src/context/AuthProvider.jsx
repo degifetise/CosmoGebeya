@@ -25,14 +25,20 @@ export function AuthProvider({ children }) {
     }
   }, [currentUser]);
 
-  const registerUser = (name, email, password) => {
+  const registerUser = (name, email, password, role = "customer") => {
     const userExists = usersDatabase.some((user) => user.email === email);
 
     if (userExists) {
       return { success: false, message: "This email is already in..." };
     }
 
-    const newUser = { id: `user_${Date.now()}`, name, email, password };
+    if (role === "admin") {
+      if (email != "admin@shopCosmo.com" || password !== "admin@crud12") {
+        return { success: "false", message: "Invalid credentials" };
+      }
+    }
+
+    const newUser = { id: `user_${Date.now()}`, name, email, password, role };
 
     setUsersDatabase((prev) => [...prev, newUser]);
 
@@ -40,6 +46,7 @@ export function AuthProvider({ children }) {
       id: newUser.id,
       name: newUser.name,
       email: newUser.email,
+      role: newUser.role,
     });
     return { success: true, message: "Registered successfully!" };
   };
@@ -50,16 +57,20 @@ export function AuthProvider({ children }) {
     );
     if (!user) {
       return { success: false, message: "Invalid email or password" };
+    } else {
+      setCurrentUser({
+        id: user.id,
+        name: user.name,
+        password: user.password,
+        role: user.role,
+      });
+      return { success: true, message: "Welcome back!", user };
     }
-    setCurrentUser({ id: user.id, name: user.name, password: user.password });
-    return { success: true, message: "Welcome back!" };
   };
   const logoutUser = () => {
     localStorage.removeItem("currentUser");
     setCurrentUser(null);
   };
-
-
 
   return (
     <AuthContext.Provider

@@ -1,4 +1,4 @@
-import React from "react";
+import "react";
 import { useCart } from "../context/CartContext";
 import { ArrowLeft, Minus, Plus, ShoppingCart, Trash } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -81,7 +81,7 @@ function CartPage() {
                     {item.name}
                   </h3>
                   <p className=" text-indigo-600 font-bold mt-1">
-                    {item.price.toFixed(2)}
+                    {Number(item.price).toFixed(2)}
                   </p>
                 </div>
 
@@ -138,9 +138,9 @@ function CartPage() {
               </span>
             </div>
 
-            <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 shadow-md hover:shadow-indigo-200/50 active:scale-[0.99] rounded-xl ">
+            <Link to="/checkout" className="block text-center bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 shadow-md hover:shadow-indigo-200/50 active:scale-[0.99] rounded-xl ">
               Proceed to Checkout
-            </button>
+            </Link>
           </div>
         </div>
       </div>

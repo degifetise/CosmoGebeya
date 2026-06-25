@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthProvider";
 import { useNavigate, Link } from "react-router-dom";
-import { Lock, LogIn, Mail, ArrowBigLeft} from "lucide-react";
+import { Lock, Mail, ArrowBigLeft, UserPlus } from "lucide-react";
 function Login() {
   const { loginUser } = useAuth();
   const navigate = useNavigate();
@@ -14,25 +14,25 @@ function Login() {
     const result = loginUser(email, password);
 
     if (result.success) {
-      navigate("/");
+      navigate("/admin/dashboard");
     } else {
+      navigate("/");
       setError(result.message);
     }
   };
 
   return (
-    <div className="relative max-w-xl  sm:max-w-md mx-auto mt-16 p-2 md:p-6 bg-white md:border border-gray-400 mb-6 rounded-2xl shadow-2xs">
+    <div className="group max-w-xl sm:max-w-md lg:max-w-2xl mx-auto mt-16 p-6 bg-slate-100 md:border border-gray-400 mb-6 rounded-2xl shadow-2xs relative">
       <div className="absolute top-3 left-1 bg-blue-600 text-white rounded-xl p-2 outline-0  border-0">
         <Link to="/">
-          {" "}
-          <ArrowBigLeft className="animate-pulse " />
+          <ArrowBigLeft className="animate-pulse" />
         </Link>
       </div>
 
       <div className="text-center mb-3 py-7">
-        <LogIn className="w-10 h-10 text-blue-600 mx-auto mb-2" />
+        <UserPlus className="w-10 h-10 text-blue-600 mx-auto mb-2" />
 
-        <h2 className="text-2xl font-bold hover:animate-bounce duration-1000 text-blue-600">
+        <h2 className="group-hover:text-yellow-600 text-2xl font-bold hover:animate-bounce duration-1000 text-blue-600">
           Welcome Back
         </h2>
       </div>
@@ -80,7 +80,6 @@ function Login() {
               className="w-full py-2.5 pl-10 pr-4 border border-gray-400 rounded-xl focus:outline-hidden focus:border-blue-700"
               placeholder="Enter your password..."
             />
-       
 
             <Lock className="absolute left-3 top-3 w-5 h-5 text-gray-800" />
           </div>

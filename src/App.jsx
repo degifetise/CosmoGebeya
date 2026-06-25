@@ -10,6 +10,8 @@ import Register from "./pages/Register";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import Login from "./pages/Login";
 import About from "./pages/About";
+import Checkout from "./pages/Checkout";
+import AdminDashboard from "./pages/AdminDashboard";
 function App() {
   return (
     <>
@@ -36,7 +38,9 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
       <Footer />
     </>
