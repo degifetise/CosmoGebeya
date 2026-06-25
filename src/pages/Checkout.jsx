@@ -81,8 +81,7 @@ function Checkout() {
 
     doc.line(14, 68, rightAlignX - 10, 68);
 
--
-    doc.setTextColor(brandColor);
+    -doc.setTextColor(brandColor);
     doc.text("Total Amount:", 14, 76);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(textColor);
@@ -98,14 +97,14 @@ function Checkout() {
       align: "center",
     });
 
-   doc.setFont("helvetica", "bold");
-   doc.setFontSize(11);
-   doc.setTextColor(textColor);
-const approvalText = "Your receipt was approved by shop keeper degifeT.";
-const wrappedText = doc.splitTextToSize(approvalText, 85);
-   doc.text(wrappedText, 52.5, 15, {
-     align: "center",
-   });
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(10);
+    doc.setTextColor(textColor);
+    const approvalText = "Your receipt was approved by shop keeper degifeT.";
+    const wrappedText = doc.splitTextToSize(approvalText, 85);
+    doc.text(wrappedText, 52.5, 112, 15, {
+      align: "center",
+    });
 
     doc.save(`Receipt_Order_${orderNumber || "Success"}.pdf`);
   };
