@@ -31,7 +31,7 @@ function Checkout() {
     const doc = new jsPDF({
       orientation: "portrait",
       unit: "mm",
-      format: "a4",
+      format: "a6",
     });
 
     const brandColor = "#16a34a";
