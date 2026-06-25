@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useCart } from "../context/CartContext";
 import { motion } from "framer-motion";
-
+import { jsPDF } from "jspdf";
+import { useAuth } from "../context/AuthProvider";
 import {
   BikeIcon,
   CheckCircle,
@@ -10,7 +11,6 @@ import {
   ShoppingBag,
   Truck,
 } from "lucide-react";
-import { useAuth } from "../context/AuthProvider";
 function Checkout() {
   const { cartTotalPrice, cartCount } = useCart();
   const { currentUser } = useAuth();
@@ -27,6 +27,79 @@ function Checkout() {
     cvc: "",
   });
 
+  const handleDownloadReceipt = () => {
+    const doc = new jsPDF({
+      orientation: "portrait",
+      unit: "mm",
+      format: "a4",
+    });
+
+    const brandColor = "#16a34a";
+    const textColor = "#1e293b";
+    const lightText = "#64748b";
+    const rightAlignX = 100;
+
+    doc.setTextColor(brandColor);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(18);
+    doc.text("Payment Success", 52, 20, { align: "center" });
+    doc.setDrawColor(226, 232, 240);
+    doc.setLineWidth(0.5);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(9);
+    doc.setTextColor(lightText);
+    doc.text(`Date: ${new Date().toLocaleString()}`, 10, 33);
+
+    if (currentUser) {
+      doc.text(
+        `Customer: Hello ${currentUser.name} Thank You for Your Purchase!`,
+        10,
+        38,
+      );
+    }
+
+    doc.setFillColor(248, 250, 252);
+    doc.rect(10, 44, 85, 45, "F");
+
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(brandColor);
+    doc.text("Order ID:", 14, 52);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(textColor);
+    doc.text(String(orderNumber || "N/A"), rightAlignX - 10, 52, {
+      align: "right",
+    });
+
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(brandColor);
+    doc.text("Payment Method:", 14, 62);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(textColor);
+    doc.text("Card ****1200", rightAlignX - 10, 62, { align: "right" });
+
+    doc.line(14, 68, rightAlignX - 10, 68);
+
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(brandColor);
+    doc.text("Total Amount:", 14, 76);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(textColor);
+    doc.setFontSize(11);
+    doc.text(String(cartTotalPrice || "$0.00"), rightAlignX - 10, 76, {
+      align: "right",
+    });
+
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(9);
+    doc.setTextColor(lightText);
+    doc.text("Your order is being processed and will arrive soon.", 52, 105, {
+      align: "center",
+    });
+
+    doc.save(`Receipt_Order_${orderNumber || "Success"}.pdf`);
+  };
   const [paymentSuceess, setPaymentSuccess] = useState(false);
   const [orderNumber, setOrderNumber] = useState("");
 
@@ -107,7 +180,10 @@ function Checkout() {
           </div>
 
           <div className="my-2 bg-slate-200">
-            <button className="py-6 w-full bg-blue-600 font-medium rounded-xl text-white hover:bg-indigo-700 active:scale-[0.99] transition-all flex gap-2 items-center justify-center shadow-lg shadow-indigo-100 ">
+            <button
+              onClick={handleDownloadReceipt}
+              className="py-3 w-full bg-blue-600 font-medium rounded-xl text-white hover:bg-indigo-700 active:scale-[0.99] transition-all flex gap-2 items-center justify-center shadow-lg shadow-indigo-100 "
+            >
               Download Receipt
             </button>
           </div>
