@@ -58,6 +58,10 @@ function Checkout() {
         38,
       );
     }
+    const customerName = currentUser?.name || "Valued Customer";
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(textColor);
+    doc.text(`Issued To: ${customerName}`, 10, 36);
 
     doc.setFillColor(248, 250, 252);
     doc.rect(10, 44, 85, 45, "F");
