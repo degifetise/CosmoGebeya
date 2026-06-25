@@ -98,12 +98,14 @@ function Checkout() {
       align: "center",
     });
 
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(11);
-    doc.setTextColor(textColor);
-    doc.text("Your receipt was approved by shop keeper degifeT.", 35, 15, {
-      align: "center",
-    });
+   doc.setFont("helvetica", "bold");
+   doc.setFontSize(11);
+   doc.setTextColor(textColor);
+const approvalText = "Your receipt was approved by shop keeper degifeT.";
+const wrappedText = doc.splitTextToSize(approvalText, 85);
+   doc.text(wrappedText, 52.5, 15, {
+     align: "center",
+   });
 
     doc.save(`Receipt_Order_${orderNumber || "Success"}.pdf`);
   };
