@@ -1,23 +1,23 @@
 import "react";
-import { ShoppingBag } from "lucide-react";
+import { Copy, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 
-
 function Footer() {
   const [newsLetter, setNewsLetter] = useState("");
-  const inputRef = useRef();
+  const inputRef = useRef(null);
   const handleNewsLetter = () => {
-    if (newsLetter === "") {
-      inputRef.current.focus();     
+    if (newsLetter.trim() === "") {
+      inputRef.current.focus();
+    } else {
+      console.log("Subscribed with:", newsLetter);
+      setNewsLetter("");
     }
   };
 
-
-
   return (
-    <div className=" bg-slate-200 shadow-2xl backdrop-blur-3xl  border-blue-500">
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 py-2 md:py-10 font-semibold gap-4 md:gap-1  md:grid-cols-2 lg:grid-cols-4">
+    <div className=" bg-slate-200 shadow-2xl backdrop-blur-3xl  border-blue-500 flex flex-col">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 py-2 md:py-10 font-semibold gap-4 md:gap-1  md:grid-cols-3 lg:grid-cols-4">
         <div className="flex flex-col items-center">
           <div className="flex items-center gap-1 font-bold text-xl text-gray-900 tracking-tight shrink">
             <ShoppingBag className="text-blue-600 w-6 h-6" />
@@ -80,17 +80,18 @@ function Footer() {
 
         <div className="flex items-center flex-col">
           <h1 className="text-blue-600 hover:text-blue-700">Stay Connected</h1>
-          <div className="flex gap-5">
+          <div className="flex gap-3">
             <input
+              ref={inputRef}
               type="email"
-              className="py-2.5 px-2 border border-blue-600 outline-none focus:border-blue-200"
+              className="shadow-2xl rounded-2xl py-2.5 px-2 border focus:border-blue-600 outline-none border-blue-200"
               value={newsLetter}
               onChange={(e) => setNewsLetter(e.target.value)}
               placeholder="subscribe our news letter"
             />
             <button
-              onClick={handleNewsLetter, inputRef}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 rounded-xl transition flex items-center justify-center gap-2"
+              onClick={handleNewsLetter}
+              className="px-4 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 rounded-xl transition flex items-center justify-center gap-2"
             >
               Subscribe
             </button>
@@ -107,6 +108,18 @@ function Footer() {
             <li className="flex items-center gap-2">Facebook</li>
           </ul>
         </div>
+      </div>
+
+      <div className="mt-1é border-t border-gray-100 py-6 text-center text-sm text-gray-500">
+        <p className="font-medium text-gray-800">
+          Developed by{" "}
+          <span className="hover:text-blue-600 transition-colors duration-200 cursor-pointer">
+            Degife Tise
+          </span>
+        </p>
+        <p className="mt-1 text-xs tracking-wide text-gray-400">
+          &copy; {new Date().getFullYear()} All Rights Reserved.
+        </p>
       </div>
     </div>
   );
