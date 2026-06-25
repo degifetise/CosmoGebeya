@@ -91,6 +91,17 @@ function Checkout() {
     });
 
     doc.setFont("helvetica", "italic");
+    doc.setFontSize(8.5);
+    doc.setTextColor(brandColor);
+    doc.text("For More Information Contact Us:", 52.5, 92, { align: "center" });
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8.5);
+    doc.setTextColor(textColor);
+    doc.text("Phone: +251 924 275 ***", 52.5, 97, { align: "center" });
+    doc.text("Email: support@cosmoshop.com", 52.2, 102, { align: "center" });
+
+    doc.setFont("helvetica", "italic");
     doc.setFontSize(9);
     doc.setTextColor(lightText);
     doc.text("Your order is being processed and will arrive soon.", 52, 105, {
@@ -100,11 +111,25 @@ function Checkout() {
     doc.setFont("helvetica", "bold");
     doc.setFontSize(10);
     doc.setTextColor(textColor);
-    const approvalText = "Your receipt was approved by shop keeper degifeT.";
+    const approvalText = "Your receipt was officially approved by.";
     const wrappedText = doc.splitTextToSize(approvalText, 85);
     doc.text(wrappedText, 52.5, 112, 15, {
       align: "center",
     });
+
+    doc.setFont("times", "italic");
+    doc.setFontSize(14);
+    doc.setTextColor("#1e3a8a");
+    doc.text("degifeT", 52.5, 118, { align: "center" });
+
+    doc.setDrawColor(203, 213, 225);
+    doc.setLineWidth(0.25);
+    doc.line(35, 121, 70, 121);
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(7.5);
+    doc.setTextColor(lightText);
+    doc.text("SHOP KEEPER / OWNER", 52.5, 125, { align: "center" });
 
     doc.save(`Receipt_Order_${orderNumber || "Success"}.pdf`);
   };
