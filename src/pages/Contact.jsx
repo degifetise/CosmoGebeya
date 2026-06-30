@@ -37,7 +37,7 @@ export default function Contact() {
                 <p className="text-xs text-gray-400 font-semibold uppercase">
                   Hotline Channel
                 </p>
-                <p className="text-gray-700 font-medium">+251-373-282-02</p>
+                <p className="text-gray-700 font-medium">+251-373-2**-**</p>
               </div>
             </div>
             <div className="flex items-center gap-4 p-4 bg-white rounded-xl border border-gray-100">
