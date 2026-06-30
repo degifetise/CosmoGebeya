@@ -2,7 +2,10 @@ import "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ShieldCheck, Truck, RotateCcw } from "lucide-react";
 import { useAuth } from "../context/AuthProvider";
+import { motion } from "framer-motion";
 
+
+const MotionLink = motion(Link);
 
 function Home() {
   const { currentUser } = useAuth();
@@ -39,32 +42,51 @@ function Home() {
   ];
 
   return (
-    <div className="w-full mx-auto pt-8">
+    <div className="relative w-full mx-auto pt-8">
       {/* Hero Section */}
+
       <section className="bg-linear-to-r from-blue-500 to-indigo-600 text-white py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
           {currentUser && (
-            <h1 className="italic text-2xl py-5">
+            <motion.h1
+              initial={{ opacity: 0, fontSize: "2rem" }}
+              animate={{ opacity: 1, fontSize: "1.5rem" }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="italic text-2xl py-5"
+            >
               Hi,
               <span className="text--600 font-bold px-1">
                 {currentUser.name}
               </span>
               welcome Back!
-            </h1>
+            </motion.h1>
           )}
-          <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
+          <motion.h1
+            initial={{ opacity: 0, y: -40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-5xl font-bold mb-4"
+          >
             Upgrade Your Digital Workspace
-          </h1>
-          <p className="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl mx-auto"
+          >
             Discover premium tech accessories, components, and gadgets curated
             for developers and creators.
-          </p>
-          <Link
+          </motion.p>
+          <MotionLink
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             to="/products"
             className="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-xl font-bold hover:bg-blue-50 transition shadow-lg"
           >
             Shop Collection <ArrowRight className="w-5 h-5" />
-          </Link>
+          </MotionLink>
+      
         </div>
       </section>
 

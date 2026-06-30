@@ -10,6 +10,7 @@ import {
   CreditCard,
   ShoppingBag,
   Truck,
+  X,
 } from "lucide-react";
 function Checkout() {
   const { cartTotalPrice, cartCount } = useCart();
@@ -26,6 +27,7 @@ function Checkout() {
     expiry: "",
     cvc: "",
   });
+  const [paymentMsg, setPaymentMsg] = useState("");
 
   const handleDownloadReceipt = () => {
     const doc = new jsPDF({
@@ -138,11 +140,12 @@ function Checkout() {
     doc.save(`Receipt_Order_${orderNumber || "Success"}.pdf`);
   };
 
-  const [paymentSuceess, setPaymentSuccess] = useState(false);
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [orderNumber, setOrderNumber] = useState("");
 
   useEffect(() => {
-    const randomOrderNumber = "#" + Math.floor(1000 + Math.random() * 9000);
+    const randomOrderNumber =
+      "order-" + Math.floor(1000 + Math.random() * 9000);
     setOrderNumber(randomOrderNumber);
   }, []);
 
@@ -157,75 +160,106 @@ function Checkout() {
     }
     setPaymentSuccess(true);
   };
+  const [displayMsg, setDisplayMsg] = useState(false);
 
-  if (paymentSuceess) {
+  const handlePayment = () => {
+    setPaymentMsg("Thank you for finishing payment.");
+    setTimeout(() => {
+      setPaymentMsg("");
+    }, 2000);
+    setPaymentSuccess(false);
+    setDisplayMsg((prev) => !prev);
+  };
+
+  if (paymentSuccess) {
     return (
-      <div className="flex bg-slate-300 items-center justify-center min-h-screen">
-        <div className="bg-white p-8 rounded-lg shadow-lg text-center">
-          <div className="flex item-center justify-center ">
-            <CheckIcon size={55} className="font-extrabold text-green-600" />
-          </div>
-          <div className="bg-gray-100 p-2">
-            <h1 className="text-3xl font-bold text-green-600 mb-4">
-              Payment Completed!
-            </h1>
-          </div>
-          <p className="text-gray-600 font-bold">
-            Your order is being processed and will arrive soon.
-          </p>
-          <div className="flex justify-between mt-6 flex-col selection:bg-amber-300 selection:text-white bg-slate-100 p-2 shadow-xs">
-            <span className="text-green-600 font-extrabold">
-              Order ID:{" "}
-              <span className="text-slate-900 opacity-50">{orderNumber}</span>
-            </span>
-            <span className="text-green-600 font-extrabold opacity-50">
-              {new Date().toLocaleString()}
-            </span>
-            <span className="text-green-600 font-extrabold">
-              Amount{" "}
-              <span className="text-slate-900 opacity-50">
-                {cartTotalPrice}
-              </span>
-            </span>
-            <span className="text-green-600 font-extrabold">
-              Payment Method{" "}
-              <span className="text-slate-900 opacity-50">Card ****1200</span>
-            </span>
-          </div>
-
-          <div className="fex items-center justify-center mt-4 text-blue-600 font-extrabold">
-            {currentUser && <h1>Thank you for your purchase</h1>}
-          </div>
-          <div className="w-full h-40 overflow-hidden flex items-center justify-center relative">
-            <motion.div
-              className="absolute left-0 top-1/2 h-2 w-full rounded-full bg-blue-400/40"
-              animate={{ opacity: [0.2, 0.5, 0.2] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            <motion.div
-              animate={{
-                x: ["-400%", "400%"],
-                y: [0, -5, 0],
-                rotate: [0, 5, -5, 0],
-              }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <BikeIcon
-                size={50}
-                className="text-blue-500 drop-shadow-[0_0_10px_rgba(0,150,255,0.7)]"
-              />
-            </motion.div>
-          </div>
-
-          <div className="my-2 bg-slate-200">
-            <button
-              onClick={handleDownloadReceipt}
-              className="py-3 w-full bg-blue-600 font-medium rounded-xl text-white hover:bg-indigo-700 active:scale-[0.99] transition-all flex gap-2 items-center justify-center shadow-lg shadow-indigo-100 "
-            >
-              Download Receipt
-            </button>
-          </div>
+      <div className="relative flex bg-slate-300 items-center justify-center min-h-screen">
+        <div
+          onClick={handlePayment}
+          className="group absolute top-2 left-10 bg-white p-2 rounded-xl"
+        >
+          <X className="group-hover:rotate-180 duration-500 group-hover:text-red-700" />
         </div>
+        {displayMsg ? (
+          <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+            <p className=" text-center block text-green-700 font-extrabold">
+              {paymentMsg}
+            </p>
+          </div>
+        ) : (
+          <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+            <div className="flex item-center justify-center ">
+              <CheckIcon size={55} className="font-extrabold text-green-600" />
+            </div>
+            <div className="bg-gray-100 p-2">
+              <h1 className="text-3xl font-bold text-green-600 mb-4">
+                Payment Completed!
+              </h1>
+            </div>
+            <p className="text-gray-600 font-bold">
+              Your order is being processed and will arrive soon.
+            </p>
+            <div className="flex justify-between mt-6 flex-col selection:bg-amber-300 selection:text-white bg-slate-100 p-2 shadow-xs">
+              <span className="text-green-600 font-extrabold">
+                Order ID:{" "}
+                <span className="text-slate-900 opacity-50">{orderNumber}</span>
+              </span>
+              <span className="text-green-600 font-extrabold">
+                Date:
+                <span className="text-slate-900 opacity-50">
+                  {new Date().toLocaleString()}
+                </span>
+              </span>
+              <span className="text-green-600 font-extrabold">
+                Amount{" "}
+                <span className="text-slate-900 opacity-50">
+                  {cartTotalPrice}
+                </span>
+              </span>
+              <span className="text-green-600 font-extrabold">
+                Payment Method{" "}
+                <span className="text-slate-900 opacity-50">Card ****1200</span>
+              </span>
+            </div>
+
+            <div className="fex items-center justify-center mt-4 text-blue-600 font-extrabold">
+              {currentUser && <h1>Thank you for your purchase</h1>}
+            </div>
+            <div className="w-full h-40 overflow-hidden flex items-center justify-center relative">
+              <motion.div
+                className="absolute left-0 top-1/2 h-2 w-full rounded-full bg-blue-400/40"
+                animate={{ opacity: [0.2, 0.5, 0.2] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              <motion.div
+                animate={{
+                  x: ["-400%", "400%"],
+                  y: [0, -5, 0],
+                  rotate: [0, 5, -5, 0],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <BikeIcon
+                  size={50}
+                  className="text-blue-500 drop-shadow-[0_0_10px_rgba(0,150,255,0.7)]"
+                />
+              </motion.div>
+            </div>
+
+            <div className="my-2 bg-slate-200">
+              <button
+                onClick={handleDownloadReceipt}
+                className="py-3 w-full bg-blue-600 font-medium rounded-xl text-white hover:bg-indigo-700 active:scale-[0.99] transition-all flex gap-2 items-center justify-center shadow-lg shadow-indigo-100 "
+              >
+                Download Receipt
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     );
   }

@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import About from "./pages/About";
 import Checkout from "./pages/Checkout";
 import AdminDashboard from "./pages/AdminDashboard";
+
 function App() {
   return (
     <>
@@ -41,6 +42,14 @@ function App() {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route
+          path="*"
+          element={
+            <>
+              return (<h2>404 Page not found!</h2>)
+            </>
+          }
+        />
       </Routes>
       <Footer />
     </>

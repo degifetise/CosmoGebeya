@@ -3,8 +3,6 @@ import { Link, NavLink } from "react-router-dom";
 import {
   ShoppingBag,
   ShoppingCart,
-  X,
-  Menu,
   LogOut,
   UserCircle,
 } from "lucide-react";
@@ -37,7 +35,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
         <Link className="flex items-center gap-1 font-bold text-xl text-gray-900 tracking-tight shrink">
           <ShoppingBag className="text-blue-600 w-6 h-6" />
-          <span>Cosmo</span>
+          <span className="hidden">Cosmo</span>
           <span className="text-blue-600">Gebeya</span>
         </Link>
 
@@ -57,7 +55,7 @@ export default function Navbar() {
         </nav>
         {isNavbarHidden && (
           <div className="md:hidden z-50 block backdrop-blur-3xl absolute top-18 left-0 bg-linear-to-r from-slate-900 to-slate-700 py-20 w-full">
-            <nav className="flex transition-all md:none items-center gap-8 flex-col">
+            <nav className="flex transition-all duration-200 md:none items-center gap-8 flex-col">
               <NavLink
                 to="/"
                 end
@@ -116,9 +114,9 @@ export default function Navbar() {
               </button>
             </div>
           ) : (
-            <div className="relative" onClick={handleAccountToggle} >
+            <div className="relative" onClick={handleAccountToggle}>
               <button className="px-4 py-1 rounded-xl text-white cursor-pointer hover:bg-blue-700 bg-blue-600 outline-none border-none">
-                <UserCircle className="w-8 h-6 text-white font-extrabold"/>
+                <UserCircle className="w-8 h-6 text-white font-extrabold" />
               </button>
               {toggleAccount && (
                 <div className="absolute z-10 top-15 bg-a rounded-xs px-8 md:px-10 shadow-2xl py-5 flex flex-col gap-3 bg-gray-300">
@@ -182,9 +180,19 @@ export default function Navbar() {
         </div>
         <div className="block md:hidden" onClick={toggleMenu}>
           {!isNavbarHidden ? (
-            <Menu className="w-8 h-8 hover:text-blue-300 cursor-pointer text-blue-600" />
+            /*             <Menu className="w-8 h-8 hover:text-blue-300 cursor-pointer text-blue-600" /> */
+            <div className="shadow-2xs rounded-xl bg-slate-100 hover:shadow-2xl relative flex flex-col gap-2 transition-transform ease-out">
+              {" "}
+              <span className="w-8 bg-slate-600 h-0.5"></span>
+              <span className="w-8 bg-slate-600 h-0.5"></span>
+              <span className="w-8 bg-slate-600 h-0.5"></span>
+            </div>
           ) : (
-            <X className="w-8 h-8 cursor-pointer text-blue-600" />
+            /*             <X className="w-8 h-8 cursor-pointer text-blue-600" /> */
+            <div className="shadow-2xs rounded-xl bg-slate-100 hover:shadow-2xl relative w-10 h-10 items-center  flex justify-center gap-2">
+              <span className="absolute -rotate-45 w-8 hover:bg-red-800 bg-blue-800 h-0.5 transition-all duration-200"></span>
+              <span className="absolute rotate-45 w-8 hover:bg-red-800 bg-blue-800 h-0.5 transition-all duration-200"></span>
+            </div>
           )}
         </div>
       </div>
