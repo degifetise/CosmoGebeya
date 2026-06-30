@@ -24,29 +24,47 @@ function Footer() {
             <span className="text-black">Cosmo</span>
             <span className="text-blue-600">Gebeya</span>
           </div>
-          <p className="mt-2 md:mt-4 text-center">
+          <Link to="/products" className="mt-2 md:mt-4 text-center flex items-center gap-2 hover:text-blue-800 hover:underline">
             Discover premium products with fast delivery and secure shopping
             experience
-          </p>
+          </Link>
         </div>
 
         <div className="flex items-center flex-col gap-2">
           <h1 className="text-blue-600 hover:text-blue-700">Shop</h1>
           <ul className="space-y-2 flex flex-col items-center text-sm text-gray-600">
             <li className="flex gap-2">
-              <a href="#home" className="hover:text-white">
+              <a
+                href="#home"
+                className="flex items-center gap-2 hover:text-blue-600 hover:underline"
+              >
                 Men
               </a>
             </li>
             <li className="flex items-center gap-2">
-              <a href="#">Women</a>
+              <a
+                href="#"
+                className="flex items-center gap-2 hover:text-blue-600 hover:underline"
+              >
+                Women
+              </a>
             </li>
             <li className="flex items-center gap-2">
-              <a href="#">Accessories</a>
+              <a
+                href="#"
+                className="flex items-center gap-2 hover:text-blue-600 hover:underline"
+              >
+                Accessories
+              </a>
             </li>
 
             <li className="flex items-center gap-2">
-              <a href="#">New Arrivals</a>
+              <a
+                href="#"
+                className="flex items-center gap-2 hover:text-blue-600 hover:underline"
+              >
+                New Arrivals
+              </a>
             </li>
           </ul>
         </div>
@@ -56,35 +74,45 @@ function Footer() {
           <ul className="space-y-2 text-sm text-gray-600">
             <div className="group">
               <Link to="/" className="hover:underline">
-                <li className="hover:ml-2">Home</li>
+                <li className="flex items-center gap-2 hover:text-blue-600 hover:underline">
+                  Home
+                </li>
               </Link>
             </div>
             <div>
               <Link to="/products" className="hover:underline">
-                <li className="">Shop</li>
+                <li className="flex items-center gap-2 hover:text-blue-600 hover:underline">
+                  Shop
+                </li>
               </Link>
             </div>
             <div>
               <Link to="/about" className="hover:underline">
-                <li className="">About</li>
+                <li className="flex items-center gap-2 hover:text-blue-600 hover:underline">
+                  About
+                </li>
               </Link>
             </div>
 
             <div>
               <Link to="/contact" className="hover:underline">
-                <li className="flex items-center gap-2">Contact</li>
+                <li className="flex items-center gap-2 hover:text-blue-600 hover:underline">
+                  Contact
+                </li>
               </Link>
             </div>
           </ul>
         </div>
 
         <div className="flex items-center flex-col">
-          <h1 className="text-blue-600 hover:text-blue-700">Stay Connected</h1>
+          <h1 className="text-blue-600 hover:text-blue-700 mb-4">
+            Stay Connected
+          </h1>
           <div className="flex gap-3">
             <input
               ref={inputRef}
               type="email"
-              className="shadow-2xl rounded-2xl py-2.5 px-2 border focus:border-blue-600 outline-none border-blue-200"
+              className="shadow-xs rounded-2xl py-2.5 px-2 placeholder:text-blue-400 opacity-50 focus:border focus:border-blue-600 outline-none"
               value={newsLetter}
               onChange={(e) => setNewsLetter(e.target.value)}
               placeholder="subscribe our news letter"
@@ -99,13 +127,17 @@ function Footer() {
         </div>
 
         <div className="flex items-center flex-col">
-          <h1 className="text-blue-600 hover:text-blue-700">
-            Our Social media Follow
-          </h1>
+          <h1 className="text-blue-600 hover:text-blue-700">Social Media</h1>
           <ul className="space-y-2 text-sm text-gray-600">
-            <li className="flex items-center gap-2">TikTok</li>
-            <li className="flex items-center gap-2">Telegram</li>
-            <li className="flex items-center gap-2">Facebook</li>
+            <li className="flex items-center gap-2 hover:text-blue-600 hover:underline">
+              TikTok
+            </li>
+            <li className="flex items-center gap-2 hover:text-blue-600 hover:underline">
+              Telegram
+            </li>
+            <li className="flex items-center gap-2 hover:text-blue-600 hover:underline">
+              Facebook
+            </li>
           </ul>
         </div>
       </div>

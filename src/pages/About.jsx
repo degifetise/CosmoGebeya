@@ -1,4 +1,5 @@
 import "react";
+import { motion } from "framer-motion";
 import { ShoppingBag, ShieldCheck, Truck, Clock } from "lucide-react";
 function About() {
   const values = [
@@ -29,19 +30,39 @@ function About() {
   ];
   return (
     <div className="bg-gray-50 text-gray-800 min-h-screen py-20 font-sans">
-      <section className="relative bg-white py-12 md:py-16">
+      <motion.section
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        className="relative bg-white py-12 md:py-16"
+      >
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <span className="text-2xl text-blue-600 font-semibold tracking-tight">
+          <motion.span
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-2xl text-blue-600 font-semibold tracking-tight"
+          >
             Discover Our Mission
-          </span>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mt-2 mb-6 tracking-tight">
+          </motion.span>
+          <motion.h1
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-4xl md:text-5xl font-extrabold text-gray-900 mt-2 mb-6 tracking-tight"
+          >
             {" "}
             Redefining Your Shopping Experience
-          </h1>
+          </motion.h1>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="py-16 max-w-6xl mx-auto px-4">
+      <motion.section
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        className="py-16 max-w-6xl mx-auto px-4"
+      >
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <h2 className="text-3xl font-bold text-gray-900">
@@ -71,7 +92,7 @@ function About() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <section className="bg-white py-16 border-t border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4">
@@ -88,9 +109,9 @@ function About() {
             {values.map((value, index) => (
               <div
                 key={index}
-                className="p-6 bg-gray-50 rounded-xl hover:bg-white hover:shadow-md transition-all duration-300 border border-transparent hover:border-gray-100"
+                className="group p-6 bg-gray-50  rounded-xl hover:bg-white hover:shadow-2xl transition-all duration-300 border border-transparent hover:border-gray-100"
               >
-                <div className="w-12 h-12  bg-blue-600 text-white rounded-lg flex items-center justify-center mb-4">
+                <div className="group-hover:scale-105 group-hover:drop-shadow-2xl duration-200 transition-all ease-in-out w-12 h-12  bg-blue-600 text-white rounded-lg flex items-center justify-center mb-4">
                   {value.icon}
                 </div>
                 <h3 className="font-bold text-lg text-gray-900 mb-2">
@@ -107,8 +128,8 @@ function About() {
 
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 grid grid-cols-3 gap-4 text-center">
-          <div>
-            <p className="text-3xl md:text-4xl font-extrabold text-blue-600">
+          <div className="shadow-2xl p-2 group rounded-tl-2xl">
+            <p className="group-hover:text-blue-700  text-3xl md:text-4xl font-bold text-blue-600">
               10k+
             </p>
             <p className="text-xs md:text-sm text-gray-500 font-medium tracking-wider mt-1">
@@ -116,19 +137,15 @@ function About() {
             </p>
           </div>
 
-          <div>
-            <p className="text-3xl md:text-4xl font-extrabold text-blue-600">
-              500+
-            </p>
+          <div className="shadow-2xl p-2 group rounded-tl-2xl">
+            <p className="text-3xl md:text-4xl font-bold text-blue-600">500+</p>
             <p className="text-xs md:text-sm text-gray-500 font-medium tracking-wider mt-1">
               Premium Products
             </p>
           </div>
 
-          <div>
-            <p className="text-3xl md:text-4xl font-extrabold text-blue-600">
-              24hr
-            </p>
+          <div className="shadow-2xl p-2 group rounded-tl-2xl">
+            <p className="text-3xl md:text-4xl font-bold text-blue-600">24hr</p>
             <p className="text-xs md:text-sm text-gray-500 font-medium tracking-wider mt-1">
               Average Delivery
             </p>
