@@ -47,26 +47,31 @@ export default function Products() {
         />
       </div>
 
-      <div
-    
-        className="grid grid-cols-2 lg:grid-cols-4 sm:flex md:grid-cols-3 mt-2 sm:mt-8 gap-4 items-center"
-      >
-        {categories.map((cat) => (
-          <div key={cat.id}>
-            <button
-              onClick={() => setCategory(cat.category)}
-              className={`rounded-3xl outline-none cursor-pointer ${category === cat.category ? "bg-blue-600 text-white" : "border border-blue-400 hover:bg-blue-500"} text-xs w-15 py-1  px-2 md:w-40 md:px-4 md:py-2  md:text-xl font-semibold sm:font-bold`}
-            >
-              {cat.category}
-            </button>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-2 ">
-        <div className="flex items-center justify-between gap-4 mb-6 flex-col sm:flex-row">
+      <div className="grid grid-cols-1 sm:grid-cols-2 space-y-2 mt-4">
+        <div className="flex gap-2 flex-row">
           <h3 className="text-center font-semibold text-gray-500 my-3 text-xl">
-            Sort by price and name
+            Filter by:
+          </h3>
+
+          <select
+            className="border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500  sm:w-64"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            {categories.map((cate) => (
+              <option key={cate.id}
+                value={cate.category}
+                className={`rounded-3xl outline-none cursor-pointer ${cate.value === cate.category ? "bg-blue-600 text-white" : " hover:bg-blue-500"} text-xs w-20  md:w-40 md:px-4 md:py-2  md:text-xl font-semibold sm:font-bold`}
+              >
+                {cate.category}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="flex items-center justify-between gap-4 mb-6 flex-row sm:flex-row">
+          <h3 className="text-center font-semibold text-gray-500 my-3 text-xl">
+            Sort by:
           </h3>
           <select
             value={sort}
@@ -107,7 +112,7 @@ export default function Products() {
         </div>
       </div>
 
-      <div className="py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {sortedProducts.map((p) => (
           <ProductCard key={p.id} product={p} addToCart={addToCart} />
         ))}

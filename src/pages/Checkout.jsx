@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useCart } from "../context/CartContext";
 import { motion } from "framer-motion";
 import { jsPDF } from "jspdf";
@@ -12,6 +12,10 @@ import {
   Truck,
   X,
 } from "lucide-react";
+
+
+  const randomOrderNumber = () =>
+    "order" + Math.floor(1000 + Math.random() * 9000);
 function Checkout() {
   const { cartTotalPrice, cartCount } = useCart();
   const { currentUser } = useAuth();
@@ -141,13 +145,16 @@ function Checkout() {
   };
 
   const [paymentSuccess, setPaymentSuccess] = useState(false);
-  const [orderNumber, setOrderNumber] = useState("");
 
-  useEffect(() => {
+
+
+  const [orderNumber] = useState(randomOrderNumber);
+
+/*   useEffect(() => {
     const randomOrderNumber =
       "order-" + Math.floor(1000 + Math.random() * 9000);
     setOrderNumber(randomOrderNumber);
-  }, []);
+  }, []); */
 
   const handleSubmit = (e) => {
     e.preventDefault();

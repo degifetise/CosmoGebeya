@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowBigLeft, Lock, Mail, User, UserPlus } from "lucide-react";
+import { ArrowBigLeft, Lock, Mail, PocketKnifeIcon, Road, RoadIcon, User, UserPlus } from "lucide-react";
 
 function Register() {
   const [name, setName] = useState("");
@@ -101,7 +101,7 @@ function Register() {
           </div>
         </div>
 
-        <div>
+        <div className="relative">
           <label
             htmlFor="email"
             className="block text-sm font-semibold uppercase text-gray-500"
@@ -118,6 +118,7 @@ function Register() {
             <option value="customer">Customer</option>
             <option value="admin">Admin</option>
           </select>
+          <RoadIcon className="absolute left-3 top-8 w-5 h-5 text-gray-800" />
         </div>
 
         <div>

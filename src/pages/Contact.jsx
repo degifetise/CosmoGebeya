@@ -1,9 +1,44 @@
 import { Mail, Phone, Clock } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function Contact() {
+  const [err, setErr] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  useEffect(() => {
+    if (err) {
+      const timer = setTimeout(() => {
+        setErr("");
+      }, 4000);
+    }
+  }, [err]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const form = {
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+    };
+    if (!form.name || !form.email || !form.message) {
+      setErr("Please fill all required place");
+      return;
+    }
+
+    console.log("Submitted:", form);
+
     alert("Thank you! Your inquiry was recorded successfully.");
+    setFormData(form);
+    setFormData({
+      name: "",
+      email: "",
+      message: "",
+    });
+    setErr("");
   };
 
   return (
@@ -59,15 +94,23 @@ export default function Contact() {
           <h3 className="font-bold text-xl mb-4 text-gray-800">
             Send Direct Message
           </h3>
+          <div className="flex justify-center my-2">
+            {err && (
+              <span className="text-red-500 text-sm text-center">{err}</span>
+            )}
+          </div>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">
                 Your Full Name
               </label>
               <input
-                required
+                value={formData.name}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
                 type="text"
-                className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-hidden focus:border-blue-500"
+                className={`w-full border border-gray-200 ${err ? "border-red-600" : ""} rounded-xl px-4 py-2.5 text-sm focus:outline-hidden focus:border-blue-500`}
               />
             </div>
             <div>
@@ -75,9 +118,12 @@ export default function Contact() {
                 Email Address
               </label>
               <input
-                required
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
                 type="email"
-                className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-hidden focus:border-blue-500"
+                className={`w-full border border-gray-200 ${err ? "border-red-600" : ""} rounded-xl px-4 py-2.5 text-sm focus:outline-hidden focus:border-blue-500`}
               />
             </div>
             <div>
@@ -85,16 +131,19 @@ export default function Contact() {
                 Message Body
               </label>
               <textarea
-                required
+                value={formData.message}
+                onChange={(e) =>
+                  setFormData({ ...formData, message: e.target.value })
+                }
                 rows={4}
-                className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-hidden focus:border-blue-500 resize-none"
+                className={`resize-none w-full border border-gray-200 ${err ? "border-red-600" : ""} rounded-xl px-4 py-2.5 text-sm focus:outline-hidden focus:border-blue-500`}
               />
             </div>
             <button
               type="submit"
               className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm py-3 rounded-xl transition"
             >
-              Dispatch Query
+              {err ? "Fill all required place" : "Dispatch Query"}
             </button>
           </form>
         </div>

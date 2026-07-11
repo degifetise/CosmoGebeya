@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthProvider";
 import { motion } from "framer-motion";
 
 
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
 function Home() {
   const { currentUser } = useAuth();
@@ -86,13 +86,12 @@ function Home() {
           >
             Shop Collection <ArrowRight className="w-5 h-5" />
           </MotionLink>
-      
         </div>
       </section>
 
       {/* Trust Badges Banner */}
       <section className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-        <div className="p-6 bg-slate-100 shadow-xl rounded-2xl border border-gray-100 flex flex-col items-center">
+        <div className="hover:shadow-xl p-6 bg-white shadow-xs rounded-2xl border border-gray-100 flex flex-col items-center">
           <Truck className="w-8 h-8  text-blue-600 font-extrabold mb-3" />
 
           <h3 className="font-bold text-gray-800 mb-1">Express Delivery</h3>
@@ -100,14 +99,14 @@ function Home() {
             Fast, reliable local tracking on all customer orders.
           </p>
         </div>
-        <div className="p-6 bg-slate-100 shadow-xl rounded-2xl border border-gray-100 flex flex-col items-center">
+        <div className="hover:shadow-xl p-6 bg-white shadow-xs rounded-2xl border border-gray-100 flex flex-col items-center">
           <ShieldCheck className="w-8 h-8  text-blue-600 font-extrabold mb-3" />
           <h3 className="font-bold text-gray-800 mb-1">Secure Checkouts</h3>
           <p className="text-sm text-gray-500">
             Fully encrypted tokenized secure payment transactions.
           </p>
         </div>
-        <div className="p-6 bg-slate-100 shadow-xl rounded-2xl border border-gray-100 flex flex-col items-center">
+        <div className="hover:shadow-xl p-6 bg-white shadow-xs rounded-2xl border border-gray-100 flex flex-col items-center">
           <RotateCcw className="w-8 h-8  text-blue-600 font-extrabold mb-3" />
           <h3 className="font-bold text-gray-800 mb-1">Easy Returns</h3>
           <p className="text-sm text-gray-500">
@@ -119,20 +118,22 @@ function Home() {
       {/* Visual Hero Banner Section */}
 
       <section className="p-6 bg-white rounded-2xl border border-gray-100 flex flex-col items-center">
-        <div className="relative z-10">
-          <span className="inline-fit items-center gap-1.5  border border-indigo-400 text-indigo-300 py-1 rounded-full text-xs semibold uppercase tracking-wider mb-4">
-            Generally cosmo
-          </span>
-          <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight mb-4">
+        <div className="relative z-10 flex flex-col items-center">
+          <div className="mb-2">
+            <span className="font-bold bg-blue-100 inline-fit px-20 items-center gap-1.5  border border-indigo-400 text-indigo-300 py-1 rounded-full text-xs semibold tracking-wider mb-4">
+              Generally cosmetics
+            </span>
+          </div>
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-center font-black tracking-tight leading-tight mb-4">
             Elevate Your Everyday Essentials.
           </h1>
-          <p className="text-indigo-600 text-sm sm:text-base mb-6 font-light leading-relaxed">
+          <p className="text-center font-semibold text-indigo-600 text-sm sm:text-base mb-6 leading-relaxed">
             Discover clean designs curated precisely for utility, comfort, and
             premium visual elegance. Free shipping on all orders this week.
           </p>
           <Link
             to="/about"
-            className="group inline-flex items-center gap-2 bg-white text-indigo-950 font-bold px-5 py-3 rounded-xl hover:bg-indigo-50 transition text-sm shadow-md"
+            className="w-full flex justify-center group items-center gap-2 bg-white text-indigo-950 font-bold px-5 py-3 rounded-xl hover:bg-indigo-50 transition text-sm shadow-md"
           >
             Learn Our Philosophy
             <ArrowRight
