@@ -1,5 +1,5 @@
 import "react";
-import { Copy, ShoppingBag } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 
@@ -16,7 +16,7 @@ function Footer() {
   };
 
   return (
-    <div className=" bg-slate-100 shadow-2xl backdrop-blur-3xl  border-blue-500 flex flex-col">
+    <div className=" shadow-2xl backdrop-blur-3xl border border-blue-100 flex flex-col">
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 py-2 md:py-10 font-semibold gap-4 md:gap-1 md:grid-cols-3 lg:grid-cols-4">
         <div className="flex flex-col items-center">
           <div className="flex items-center gap-1 font-bold text-xl text-gray-900 tracking-tight shrink">
@@ -33,79 +33,81 @@ function Footer() {
           </Link>
         </div>
 
-      
-          <div className="flex items-center justify-center flex-col gap-2">
-            <h1 className="text-blue-600 hover:text-blue-700">Shop</h1>
-            <ul className="space-y-2 flex flex-col items-center text-sm text-gray-600">
-              <li className="flex gap-2">
-                <a
-                  href="#home"
-                  className="flex items-center gap-2 hover:text-blue-600 hover:underline"
-                >
-                  Men
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <a
-                  href="#"
-                  className="flex items-center gap-2 hover:text-blue-600 hover:underline"
-                >
-                  Women
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <a
-                  href="#"
-                  className="flex items-center gap-2 hover:text-blue-600 hover:underline"
-                >
-                  Accessories
-                </a>
-              </li>
 
-              <li className="flex items-center gap-2">
-                <a
-                  href="#"
-                  className="flex items-center gap-2 hover:text-blue-600 hover:underline"
-                >
-                  New Arrivals
-                </a>
-              </li>
-            </ul>
-          </div>
 
-          <div className="flex flex-col gap-2 items-center">
-            <h2 className="text-blue-600 hover:text-blue-700">Quick Links</h2>
-            <ul className="space-y-2 text-sm text-gray-600">
-              <div className="group">
-                <Link to="/" className="hover:underline">
-                  <li className="flex items-center gap-2 hover:text-blue-600 hover:underline">
-                    Home
-                  </li>
-                </Link>
-              </div>
-              <div>
-                <Link to="/products" className="hover:underline">
-                  <li className="flex items-center gap-2 hover:text-blue-600 hover:underline">
-                    Shop
-                  </li>
-                </Link>
-              </div>
-              <div>
-                <Link to="/about" className="hover:underline">
-                  <li className="flex items-center gap-2 hover:text-blue-600 hover:underline">
-                    About
-                  </li>
-                </Link>
-              </div>
 
-              <div>
-                <Link to="/contact" className="hover:underline">
-                  <li className="flex items-center gap-2 hover:text-blue-600 hover:underline">
-                    Contact
-                  </li>
-                </Link>
-              </div>
-            </ul>
+        <div className="flex items-center justify-center flex-col gap-2">
+          <h1 className="text-blue-600 hover:text-blue-700">Shop</h1>
+          <ul className="space-y-2 flex flex-col items-center text-sm text-gray-600">
+            <li className="flex gap-2">
+              <a
+                href="#home"
+                className="flex items-center gap-2 hover:text-blue-600 hover:underline"
+              >
+                Men
+              </a>
+            </li>
+            <li className="flex items-center gap-2">
+              <a
+                href="#"
+                className="flex items-center gap-2 hover:text-blue-600 hover:underline"
+              >
+                Women
+              </a>
+            </li>
+            <li className="flex items-center gap-2">
+              <a
+                href="#"
+                className="flex items-center gap-2 hover:text-blue-600 hover:underline"
+              >
+                Accessories
+              </a>
+            </li>
+
+            <li className="flex items-center gap-2">
+              <a
+                href="#"
+                className="flex items-center gap-2 hover:text-blue-600 hover:underline"
+              >
+                New Arrivals
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div className="flex flex-col gap-2 items-center">
+          <h2 className="text-blue-600 hover:text-blue-700">Quick Links</h2>
+          <ul className="space-y-2 text-sm text-gray-600">
+            <div className="group">
+              <Link to="/" className="hover:underline">
+                <li className="flex items-center gap-2 hover:text-blue-600 hover:underline">
+                  Home
+                </li>
+              </Link>
+            </div>
+            <div>
+              <Link to="/products" className="hover:underline">
+                <li className="flex items-center gap-2 hover:text-blue-600 hover:underline">
+                  Shop
+                </li>
+              </Link>
+            </div>
+            <div>
+              <Link to="/about" className="hover:underline">
+                <li className="flex items-center gap-2 hover:text-blue-600 hover:underline">
+                  About
+                </li>
+              </Link>
+            </div>
+
+            <div>
+              <Link to="/contact" className="hover:underline">
+                <li className="flex items-center gap-2 hover:text-blue-600 hover:underline">
+                  Contact
+                </li>
+              </Link>
+            </div>
+          </ul>
         </div>
 
         <div className="flex items-center flex-col">

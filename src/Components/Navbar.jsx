@@ -1,11 +1,7 @@
 import { useCart } from "../context/CartContext";
 import { Link, NavLink } from "react-router-dom";
-import {
-  ShoppingBag,
-  ShoppingCart,
-  LogOut,
-  UserCircle,
-} from "lucide-react";
+import { motion } from "framer-motion";
+import { ShoppingBag, ShoppingCart, LogOut, UserCircle } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "../context/AuthProvider";
 
@@ -54,7 +50,13 @@ export default function Navbar() {
           </NavLink>
         </nav>
         {isNavbarHidden && (
-          <div className="md:hidden z-50 block backdrop-blur-3xl absolute top-18 left-0 bg-linear-to-r from-slate-900 to-slate-700 py-20 w-full">
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: "0" }}
+            exit={{ x: "100%" }}
+transition={{type: "spring", duration: 0.8}}
+            className="md:hidden z-50 block backdrop-blur-3xl absolute top-18 left-0 bg-linear-to-r from-slate-900 to-slate-700 py-20 w-full"
+          >
             <nav className="flex transition-all duration-200 md:none items-center gap-8 flex-col">
               <NavLink
                 to="/"
@@ -90,7 +92,7 @@ export default function Navbar() {
                 Contact
               </NavLink>
             </nav>
-          </div>
+          </motion.div>
         )}
 
         <div className="flex items-center gap-2 sm:gap-8">
